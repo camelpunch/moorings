@@ -9,14 +9,16 @@
                  [ring/ring-core "1.3.2"]
                  [ring/ring-jetty-adapter "1.3.2"]
                  [hiccup "1.0.5"]
-                 [leiningen "2.5.1"]]
+                 [leiningen "2.5.1"]
+                 [environ "1.0.0"]]
+  :plugins [[lein-environ "1.0.0"]
+            [lein-ring "0.8.11"]]
+  :ring {:handler moorings.core/app}
   :main ^:skip-aot moorings.core
   :target-path "target/%s"
   :profiles {:dev {:source-paths ["dev"]
                    :repl-options {:init-ns user}
                    :dependencies [[org.clojure/tools.namespace "0.2.10"]
                                   [ring/ring-mock "0.2.0"]]
-                   :plugins [[cider/cider-nrepl "0.8.2"]
-                             [lein-ring "0.8.11"]]
-                   :ring {:handler moorings.core/app}}
+                   :plugins [[cider/cider-nrepl "0.8.2"]]}
              :uberjar {:aot :all}})

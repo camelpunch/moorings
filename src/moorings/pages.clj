@@ -1,12 +1,17 @@
 (ns moorings.pages
   (:require [hiccup.page :refer [html5]]))
 
-(defn index []
+(defn index [{maps-api-key :maps-api-key}]
   (html5
    [:head
-    [:link {:href "https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css"
-            :rel "stylesheet" :type "text/css"}]]
+    [:style {:type "text/css"}
+     "html, body, #map-canvas { height: 100%; margin: 0; padding: 0 }"]
+    [:script {:src (str "https://maps.googleapis.com/maps/api/js?key=" maps-api-key)
+              :type "text/javascript"}]]
    [:body
-    [:div#app
-     [:h2 "Loading..."]]
-    [:script {:src "/js/application.js" :type "text/javascript"}]]))
+    [:div#map-canvas]
+
+    [:script {:src "/js/application.js"
+              :type "text/javascript"}]
+    [:script {:type "text/javascript"}
+     "google.maps.event.addDomListener(window, 'load', moorings.application.initialize);"]]))

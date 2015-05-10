@@ -12,3 +12,4 @@ pom.xml.asc
 test/fixtures
 .#*
 resources/public/js/*
+profiles.clj
