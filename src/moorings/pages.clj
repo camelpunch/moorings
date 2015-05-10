@@ -9,4 +9,4 @@
    [:body
     [:div#app
      [:h2 "Loading..."]]
-    [:script {:src "/application.js" :type "text/javascript"}]]))
+    [:script {:src "/js/application.js" :type "text/javascript"}]]))

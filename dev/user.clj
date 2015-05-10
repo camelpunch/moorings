@@ -10,7 +10,8 @@
   (js/build "src"
             {:main 'moorings.application
              :output-to (str js-dir "/application.js")
-             :output-dir js-dir}))
+             :output-dir js-dir
+             :asset-path "js"}))
 
 (comment
   (refresh)
