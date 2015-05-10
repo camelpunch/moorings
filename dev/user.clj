@@ -5,17 +5,25 @@
 
 (def js-dir "resources/public/js")
 
-(defn build [& [opts]]
+(defn watch []
+  (delete-file-recursively js-dir :silently)
+  (js/watch "src"
+            {:main 'moorings.application
+             :output-to (str js-dir "/application.js")
+             :output-dir js-dir
+             :asset-path "js"}))
+
+(defn production-build []
   (delete-file-recursively js-dir :silently)
   (js/build "src"
-            (merge {:main 'moorings.application
-                    :output-to (str js-dir "/application.js")
-                    :output-dir js-dir
-                    :asset-path "js"}
-                   (or opts {}))))
+            {:main 'moorings.application
+             :output-to (str js-dir "/application.js")
+             :output-dir js-dir
+             :asset-path "js"
+             :optimizations :advanced}))
 
 (comment
   (refresh)
-  (build)
-  (build {:optimizations :advanced})
+  (watch)
+  (production-build)
   )
