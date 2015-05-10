@@ -11,3 +11,4 @@ pom.xml.asc
 .hg/
 test/fixtures
 .#*
+resources/public/js/*
