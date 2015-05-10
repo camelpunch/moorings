@@ -1,7 +1,12 @@
 (ns moorings.core-test
   (:require [clojure.test :refer :all]
-            [moorings.core :refer :all]))
+            [moorings.core :refer :all]
+            [ring.mock.request :as mock]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest four-oh-four-on-bogus-request
+  (is (= 404
+         ((app (mock/request :get "/foobar")) :status))))
+
+(deftest two-hundred-for-root
+  (is (= 200
+         ((app (mock/request :get "/")) :status))))

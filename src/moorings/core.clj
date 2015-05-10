@@ -7,9 +7,13 @@
   (:gen-class))
 
 (defn handler [request]
-  {:status 200
-   :headers {"Content-Type" "text/html"}
-   :body (pages/index)})
+  (if (= "/" (request :uri))
+    {:status 200
+     :headers {"Content-Type" "text/html"}
+     :body (pages/index)}
+    {:status 404
+     :headers {"Content-Type" "text/plain"}
+     :body "Not Found!"}))
 
 (def app
   (-> handler

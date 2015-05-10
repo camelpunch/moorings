@@ -14,7 +14,8 @@
   :target-path "target/%s"
   :profiles {:dev {:source-paths ["dev"]
                    :repl-options {:init-ns user}
-                   :dependencies [[org.clojure/tools.namespace "0.2.10"]]
+                   :dependencies [[org.clojure/tools.namespace "0.2.10"]
+                                  [ring/ring-mock "0.2.0"]]
                    :plugins [[cider/cider-nrepl "0.8.2"]
                              [lein-ring "0.8.11"]]
                    :ring {:handler moorings.core/app}}
